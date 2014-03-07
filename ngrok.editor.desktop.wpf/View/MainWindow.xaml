@@ -1,0 +1,18 @@
+﻿<Window x:Class="ngrok.editor.desktop.wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uc="clr-namespace:ngrok.editor.desktop.wpf"
+        Title="ngrok Configurator" Height="350" Width="525"
+        DataContext="{Binding MainWindow, Source={StaticResource Locator}}">
+    <Window.Resources>
+        <uc:BooleanToVisibilityConverter x:Key="b2v" />
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <uc:SitesPage />
+        </Grid>
+        <Grid Visibility="{Binding ConfigurationService.IsConfigurationNeeded, Converter={StaticResource b2v}}">
+            <uc:ApplicationConfigurationPage />
+        </Grid>
+    </Grid>    
+</Window>
