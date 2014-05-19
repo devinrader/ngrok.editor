@@ -39,7 +39,7 @@ namespace ngrok.editor.desktop.wpf.ViewModel
                 Process p = new Process();
                 p.StartInfo = new ProcessStartInfo( "cmd.exe" ) 
                     {
-                        Arguments = string.Format("/k {0} -subdomain={1} {2}", Path.Combine(_configurationService.ApplicationConfiguration.NgrokExecutablePath, "ngrok.exe"), this.SelectedSite.Subdomain, this.SelectedSite.LocalhostPort),
+                        Arguments = string.Format("/k \"{0}\" -subdomain={1} {2}", Path.Combine(_configurationService.ApplicationConfiguration.NgrokExecutablePath, "ngrok.exe"), this.SelectedSite.Subdomain, this.SelectedSite.LocalhostPort),
                         UseShellExecute = true,
                         WindowStyle = ProcessWindowStyle.Normal
                     };
