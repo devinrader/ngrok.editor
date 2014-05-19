@@ -17,13 +17,13 @@ When you first run the project you'll need to tell ngrok.editor where some impor
 
 ![App Configuration](http://i.imgur.com/t0m8ygb.png)
 
-Once thats done ngrok.editor will figure out all of the IIS Express websites you have on your system and let you configure both the IIS Express binding and the Windows UrlAcl needed in order to let ngrok tunnel requests to your website:
+Once that's done, ngrok.editor will figure out all of the IIS Express websites you have on your system and let you configure both the IIS Express binding and the Windows UrlAcl needed in order to let ngrok tunnel requests to your website:
 
 ![Site Configuration](http://i.imgur.com/CUis8hE.png)
 
 ![Run NGrok](http://i.imgur.com/4tvSe4E.png)
 
-Once you have a tunnel running you can also launch the request inspector right from the editor.
+Once you have a tunnel running, you can also launch the request inspector right from the editor.
 
 
 
