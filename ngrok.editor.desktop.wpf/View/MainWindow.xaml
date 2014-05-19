@@ -9,7 +9,18 @@
     </Window.Resources>
     <Grid>
         <Grid>
-            <uc:SitesPage />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Menu IsMainMenu="True">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Edit Application Paths" Command="{Binding ConfigureCommand}" />
+                    <Separator />
+                    <MenuItem Header="E_xit" Command="{Binding QuitCommand}" />
+                </MenuItem>
+            </Menu>
+            <uc:SitesPage Grid.Row="1" />
         </Grid>
         <Grid Visibility="{Binding ConfigurationService.IsConfigurationNeeded, Converter={StaticResource b2v}}">
             <uc:ApplicationConfigurationPage />

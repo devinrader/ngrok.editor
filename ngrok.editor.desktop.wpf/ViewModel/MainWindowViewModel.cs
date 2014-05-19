@@ -18,8 +18,22 @@ namespace ngrok.editor.desktop.wpf.ViewModel
         public MainWindowViewModel(IConfigurationService configurationService)
         {
             _configurationService = configurationService;
+
+            this.QuitCommand = new RelayCommand(() =>
+            {
+                App.Current.Shutdown(0);
+            });
+
+            this.ConfigureCommand = new RelayCommand(() =>
+            {
+                this.ConfigurationService.ForceConfiguration();
+            });
         }
 
         public IConfigurationService ConfigurationService { get { return _configurationService; } }
+
+        public RelayCommand QuitCommand { get; set; }
+
+        public RelayCommand ConfigureCommand { get; set; }
     }
 }

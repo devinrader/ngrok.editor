@@ -16,6 +16,7 @@ namespace ngrok.editor.desktop.wpf
 
         ApplicationConfiguration _applicationConfiguration;
         Configuration _configuration;
+        bool _forceConfiguration = false;
 
         public ConfigurationService()
         {
@@ -23,7 +24,6 @@ namespace ngrok.editor.desktop.wpf
 
             _applicationConfiguration = new ApplicationConfiguration();
             _applicationConfiguration.ApplicationHostsConfigPath = _configuration.AppSettings.Settings.GetValueOrDefault("applicationHostsConfigPath");
-            //_applicationConfiguration.NgrokConfigPath = _configuration.AppSettings.Settings.GetValueOrDefault("ngrokConfigPath");
             _applicationConfiguration.NgrokExecutablePath = _configuration.AppSettings.Settings.GetValueOrDefault("ngrokExecutablePath");
 
             //set a default applicationhosts.config location if there is no value and we find the location exists
@@ -58,25 +58,44 @@ namespace ngrok.editor.desktop.wpf
         public void Save()
         {
             _configuration.AppSettings.Settings.CreateOrUpdateKey("applicationHostsConfigPath", this.ApplicationConfiguration.ApplicationHostsConfigPath);
-            _configuration.AppSettings.Settings.CreateOrUpdateKey("ngrokConfigPath", this.ApplicationConfiguration.NgrokConfigPath);
-            //_configuration.AppSettings.Settings.CreateOrUpdateKey("ngrokExecutablePath", this.ApplicationConfiguration.NgrokExecutablePath);
+            _configuration.AppSettings.Settings.CreateOrUpdateKey("ngrokExecutablePath", this.ApplicationConfiguration.NgrokExecutablePath);
             _configuration.Save();
 
+            this._forceConfiguration = false;
             this.RaisePropertyChanged("IsConfigurationNeeded");
 
         }
+
+        public void ForceConfiguration()
+        { 
+            this._forceConfiguration = true;
+            this.RaisePropertyChanged("IsConfigurationNeeded");
+        }
+
+        public bool IsForced { get { return _forceConfiguration; } }
 
         public bool IsConfigurationNeeded
         {
             get
             {
+                if (!this.IsConfigurationValid || this._forceConfiguration)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public bool IsConfigurationValid
+        {
+            get
+            {
                 if (
-                    !string.IsNullOrWhiteSpace(this.ApplicationConfiguration.ApplicationHostsConfigPath) &&
-                    File.Exists(Path.Combine(this.ApplicationConfiguration.ApplicationHostsConfigPath, "applicationhost.config")) &&
-                    //!string.IsNullOrWhiteSpace(this.ApplicationConfiguration.NgrokConfigPath) &&
-                    //File.Exists(Path.Combine(this.ApplicationConfiguration.NgrokConfigPath, ".ngrok")) &&
-                    !string.IsNullOrWhiteSpace(this.ApplicationConfiguration.NgrokExecutablePath) &&
-                    File.Exists(Path.Combine(this.ApplicationConfiguration.NgrokExecutablePath, "ngrok.exe"))
+                    string.IsNullOrWhiteSpace(this.ApplicationConfiguration.ApplicationHostsConfigPath) ||
+                    !File.Exists(Path.Combine(this.ApplicationConfiguration.ApplicationHostsConfigPath, "applicationhost.config")) ||
+                    string.IsNullOrWhiteSpace(this.ApplicationConfiguration.NgrokExecutablePath) ||
+                    !File.Exists(Path.Combine(this.ApplicationConfiguration.NgrokExecutablePath, "ngrok.exe"))
                     )
                 {
                     return false;

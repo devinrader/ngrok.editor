@@ -36,10 +36,6 @@
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ApplicationConfiguration.NgrokExecutablePath}" Margin="0,3,2,3" />
                     <Button Grid.Row="1" Grid.Column="2" Margin="0,3,2,3" Command="{Binding NgrokExecutablePathCommand}">...</Button>
 
-                    <!--<Label Grid.Row="2">ngrok Configuration Path</Label>
-                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ApplicationConfiguration.NgrokConfigPath}" Margin="0,3,2,3" />
-                    <Button Grid.Row="2" Grid.Column="2" Margin="0,3,2,3" Command="{Binding NgrokConfigurationPathCommand}">...</Button>-->
-
                     <Grid Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Width="55" Margin="0,7,5,0" Command="{Binding SaveConfigurationCommand}">OK</Button>

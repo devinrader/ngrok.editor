@@ -31,34 +31,19 @@ namespace ngrok.editor.desktop.wpf.ViewModel
                     this.ApplicationConfiguration.NgrokExecutablePath = path;
                 }));
             });
-            //this.NgrokConfigurationPathCommand = new RelayCommand(() =>
-            //{
-            //    MessengerInstance.Send(new FolderDialogMessage((path) =>
-            //    {
-            //        this.ApplicationConfiguration.NgrokConfigPath = path;
-            //    }));
-            //});
-
             this.SaveConfigurationCommand = new RelayCommand(
                 () =>
                 {
                     this._configurationService.Save();
-                    //this._siteDataService = SimpleIoc.Default.GetInstance<ISiteDataService>();
                 },
                 () =>
                 {
-                    if (!this._configurationService.IsConfigurationNeeded)
-                    {
-                        return true;
-                    }
-
-                    return false;
+                    return this._configurationService.IsConfigurationValid;
                 });
         }
 
         public RelayCommand ApplicationHostsPathCommand { get; set; }
         public RelayCommand NgrokExecutablePathCommand { get; set; }
-        //public RelayCommand NgrokConfigurationPathCommand { get; set; }
         public RelayCommand SaveConfigurationCommand { get; set; }
 
         public ApplicationConfiguration ApplicationConfiguration

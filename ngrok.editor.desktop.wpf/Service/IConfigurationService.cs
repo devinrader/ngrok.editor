@@ -16,6 +16,12 @@ namespace ngrok.editor.desktop.wpf
 
         bool IsConfigurationNeeded { get; }
 
+        bool IsConfigurationValid { get; }
+
+        bool IsForced { get; }
+
         void Save();
+
+        void ForceConfiguration();
     }
 }

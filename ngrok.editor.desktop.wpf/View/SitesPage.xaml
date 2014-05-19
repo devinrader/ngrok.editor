@@ -72,8 +72,8 @@
             </Grid>
             <Grid Grid.Row="1">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="Run ngrok" Command="{Binding Path=RunNgrokCommand}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Margin="3,25,3,3" Padding="4" />
-                    <Button Content="Load ngrok Inspector" Command="{Binding Path=LoadNgrokInspector}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Margin="3,25,3,3" Padding="4" />
+                        <Button Content="Run ngrok" Command="{Binding Path=RunNgrokCommand}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Margin="3,25,3,3" Padding="4" />
+                        <Button Content="Load ngrok Inspector" Command="{Binding Path=LoadNgrokInspector}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Margin="3,25,3,3" Padding="4" />
                     </StackPanel>
                 </Grid>
 
