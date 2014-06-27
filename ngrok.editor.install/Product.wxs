@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="ngrok.editor" Language="1033" Version="1.0.0.0" Manufacturer="DevinRader" UpgradeCode="22132c2d-c8e3-4a99-bb88-b5ab6a1bd41d">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of ngrok.editor is already installed." />
+    <MediaTemplate />
+
+    <Feature Id="ProductFeature" Title="ngrok.editor" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+
+    <UIRef Id="WixUI_Minimal" />
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="ngrok.editor" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="ngrok.editor"/>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <!-- Application Icon -->
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="ngrok.editor"
+                  Description="A visual configuration utility for ngrok"
+                  Target="[#ngrok.editor.desktop.wpf.Executable]"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\ngrok.editor" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      
+      <!-- ngrok -->
+      <Component Id="ngrok.editor.desktop.wpf.Executable">
+        <File Id="ngrok.editor.desktop.wpf.Executable"
+              Name="$(var.ngrok.editor.desktop.wpf.TargetFileName)"
+              Source="$(var.ngrok.editor.desktop.wpf.TargetPath)"
+              KeyPath="yes" />
+      </Component>
+      
+      <Component Id="ngrok.editor.desktop.wpf.Config">
+          <File Id="ngrok.editor.desktop.wpf.Config"
+              Name="$(var.ngrok.editor.desktop.wpf.TargetFileName).config"
+              Source="$(var.ngrok.editor.desktop.wpf.TargetPath).config"
+              KeyPath="yes" />
+      </Component>
+      
+      <!-- MvvmLight -->
+      <Component Id="GalaSoft.MvvmLight.WPF45">
+        <File Id="GalaSoft.MvvmLight.WPF45"
+            Name="GalaSoft.MvvmLight.WPF45.dll"
+            Source="$(var.ngrok.editor.desktop.wpf.TargetDir)GalaSoft.MvvmLight.WPF45.dll" 
+            KeyPath="yes" />
+      </Component>
+
+      <Component Id="GalaSoft.MvvmLight.Extras.WPF45">
+        <File Id="GalaSoft.MvvmLight.Extras.WPF45"
+            Name="GalaSoft.MvvmLight.Extras.WPF45.dll"
+            Source="$(var.ngrok.editor.desktop.wpf.TargetDir)GalaSoft.MvvmLight.Extras.WPF45.dll"
+            KeyPath="yes" />
+      </Component>
+
+      <!-- Other -->
+      <Component Id="Microsoft.Practices.ServiceLocation">
+        <File Id="Microsoft.Practices.ServiceLocation"
+            Name="Microsoft.Practices.ServiceLocation.dll"
+            Source="$(var.ngrok.editor.desktop.wpf.TargetDir)Microsoft.Practices.ServiceLocation.dll" 
+            KeyPath="yes" />
+      </Component>
+
+      <Component Id="System.Windows.Interactivity">
+        <File Id="System.Windows.Interactivity"
+            Name="System.Windows.Interactivity.dll"
+            Source="$(var.ngrok.editor.desktop.wpf.TargetDir)System.Windows.Interactivity.dll" 
+            KeyPath="yes" />
+      </Component>
+
+    </ComponentGroup>
+  </Fragment>
+</Wix>

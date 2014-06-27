@@ -1,27 +1,40 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngrok.editor.desktop.wpf", "ngrok.editor.desktop.wpf\ngrok.editor.desktop.wpf.csproj", "{A238EC93-7AB3-45D4-8F07-93459CA22BEE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{532FF5F5-BE5E-4AEF-A98A-90846AA3508B}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "ngrok.editor.install", "ngrok.editor.install\ngrok.editor.install.wixproj", "{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A238EC93-7AB3-45D4-8F07-93459CA22BEE}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Debug|x86.ActiveCfg = Debug|x86
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Debug|x86.Build.0 = Debug|x86
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Release|Any CPU.ActiveCfg = Release|x86
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Release|x86.ActiveCfg = Release|x86
+		{BB85E8A7-CDFC-4DDB-8ED3-263ECC192AFC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
