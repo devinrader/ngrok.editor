@@ -27,6 +27,11 @@ namespace ngrok.editor.desktop.wpf
             this.Sites = new ObservableCollection<SiteViewModel>();
 
             _configurationService.PropertyChanged += ApplicationConfiguration_PropertyChanged;
+
+            if (_configurationService.IsConfigurationValid)
+            {
+                Load();
+            }
         }
 
         void ApplicationConfiguration_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

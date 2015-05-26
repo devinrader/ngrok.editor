@@ -15,12 +15,20 @@
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="250" Width="Auto" />
+                <ColumnDefinition MaxWidth="250" MinWidth="150" Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ListView ItemsSource="{Binding SitesDataService.Sites}" SelectedItem="{Binding SelectedSite}" DisplayMemberPath="name" Margin="10" />
-
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                
+                <TextBox Grid.Row="0" Margin="5,5,5,5" Text="{Binding SiteFilter, UpdateSourceTrigger=PropertyChanged}" />
+                <ListView Grid.Row="1" ItemsSource="{Binding FilteredSites}" SelectedItem="{Binding SelectedSite}" DisplayMemberPath="name" Margin="5,0,5,5" />
+            </Grid>
+            
             <Grid Grid.Column="1" Margin="0,10,10,10" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

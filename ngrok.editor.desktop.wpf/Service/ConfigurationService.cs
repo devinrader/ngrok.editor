@@ -78,6 +78,7 @@ namespace ngrok.editor.desktop.wpf
         {
             get
             {
+
                 if (!this.IsConfigurationValid || this._forceConfiguration)
                 {
                     return true;

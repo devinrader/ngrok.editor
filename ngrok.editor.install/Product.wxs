@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="ngrok.editor" Language="1033" Version="1.0.0.0" Manufacturer="DevinRader" UpgradeCode="22132c2d-c8e3-4a99-bb88-b5ab6a1bd41d">
+  <Product Id="*" Name="ngrok.editor" Language="1033" Version="1.0.1.1" Manufacturer="DevinRader" UpgradeCode="22132c2d-c8e3-4a99-bb88-b5ab6a1bd41d">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of ngrok.editor is already installed." />

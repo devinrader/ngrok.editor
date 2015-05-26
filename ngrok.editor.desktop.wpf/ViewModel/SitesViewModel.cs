@@ -17,6 +17,8 @@ namespace ngrok.editor.desktop.wpf.ViewModel
         IConfigurationService _configurationService;
         ISiteDataService _siteDataService;
         SiteViewModel _selectedSite;
+        string _siteFilter;
+        ObservableCollection<SiteViewModel> _filteredSites = new ObservableCollection<SiteViewModel>();
 
         public SitesViewModel(ISiteDataService siteDataService, IConfigurationService configurationService)
         {
@@ -26,6 +28,7 @@ namespace ngrok.editor.desktop.wpf.ViewModel
             _siteDataService.PropertyChanged += (s,e) => {
                 if (e.PropertyName == "Sites")
                 {
+                    this.SiteFilter = String.Empty;
                     this.SelectedSite = this.Sites.FirstOrDefault();
                 }
             };
@@ -39,13 +42,15 @@ namespace ngrok.editor.desktop.wpf.ViewModel
                 Process p = new Process();
                 p.StartInfo = new ProcessStartInfo( "cmd.exe" ) 
                     {
-                        Arguments = string.Format("/k \"{0}\" -subdomain={1} {2}", Path.Combine(_configurationService.ApplicationConfiguration.NgrokExecutablePath, "ngrok.exe"), this.SelectedSite.Subdomain, this.SelectedSite.LocalhostPort),
+                        Arguments = string.Format("/k \"{0}\" http -subdomain={1} {2}", Path.Combine(_configurationService.ApplicationConfiguration.NgrokExecutablePath, "ngrok.exe"), this.SelectedSite.Subdomain, this.SelectedSite.LocalhostPort),
                         UseShellExecute = true,
                         WindowStyle = ProcessWindowStyle.Normal
                     };
                 p.Start();
 
             });
+
+            this.SiteFilter = String.Empty;
         }
 
         public RelayCommand RunNgrokCommand { get; set; }
@@ -72,6 +77,37 @@ namespace ngrok.editor.desktop.wpf.ViewModel
                     this.RaisePropertyChanged("SelectedSite");
                 }
             }
-        }        
+        }
+
+        public ObservableCollection<SiteViewModel> FilteredSites
+        {
+            get {
+                return _filteredSites;
+            }
+        }
+
+        public string SiteFilter
+        {
+            get { 
+                return _siteFilter; 
+            }
+            set {
+                if (value != this._siteFilter)
+                {
+                    this._siteFilter = value;
+
+                    if (!string.IsNullOrWhiteSpace(this._siteFilter))
+                    {
+                        _filteredSites = new ObservableCollection<SiteViewModel>(this.Sites.Where(s => s.name.Contains(this.SiteFilter)));
+                    }
+                    else
+                    {
+                        _filteredSites = this.Sites;
+                    }
+                    this.RaisePropertyChanged("SiteFilter");
+                    this.RaisePropertyChanged("FilteredSites");
+                }
+            }
+        }
     }
 }
